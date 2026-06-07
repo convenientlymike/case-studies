@@ -1,0 +1,7 @@
+# macOS / editor cruft
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*.swo
+.idea/
