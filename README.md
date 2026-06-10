@@ -15,6 +15,7 @@ client-identifying details and proprietary specifics removed.
 | 03 | [Real-estate wholesaling platform](./03-rew-platform.md) | Proptech · telephony · AI · workflows | `Next.js` `Go` `Temporal` `Kafka` `ClickHouse` |
 | 04 | [Real-time hardware control plane](./04-realtime-control-plane.md) | Embedded-adjacent · live telemetry | `TypeScript` `React` `FastAPI` `HAL design` |
 | 05 | [Custom Android platform & instrumentation R&D](./05-systems-and-instrumentation.md) | Low-level systems · emulation · reverse engineering | `C` `Kotlin` `Frida` `Vulkan` `Metal` |
+| 06 | [Root-causing a GPU-driver crash (Metal↔Vulkan)](./06-gpu-driver-crash-re.md) | GPU driver RE · crash debugging · Apple Silicon | `C/C++` `Vulkan` `Metal` `Mesa` `gfxstream` |
 
 ---
 
