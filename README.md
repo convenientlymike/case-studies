@@ -16,6 +16,7 @@ client-identifying details and proprietary specifics removed.
 | 04 | [Real-time hardware control plane](./04-realtime-control-plane.md) | Embedded-adjacent · live telemetry | `TypeScript` `React` `FastAPI` `HAL design` |
 | 05 | [Custom Android platform & instrumentation R&D](./05-systems-and-instrumentation.md) | Low-level systems · emulation · reverse engineering | `C` `Kotlin` `Frida` `Vulkan` `Metal` |
 | 06 | [Root-causing a GPU-driver crash (Metal↔Vulkan)](./06-gpu-driver-crash-re.md) | GPU driver RE · crash debugging · Apple Silicon | `C/C++` `Vulkan` `Metal` `Mesa` `gfxstream` |
+| 07 | [Making "done" machine-checkable](./07-forcing-function-completeness.md) | Engineering methodology · quality gates · large apps | `Python` `FastAPI` `TypeScript` `React` `lint gates` |
 
 ---
 
