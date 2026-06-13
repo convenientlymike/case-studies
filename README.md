@@ -19,6 +19,7 @@ client-identifying details and proprietary specifics removed.
 | 07 | [Making "done" machine-checkable](./07-forcing-function-completeness.md) | Engineering methodology · quality gates · large apps | `Python` `FastAPI` `TypeScript` `React` `lint gates` |
 | 08 | [Root-causing a "degrades-after-boot" reliability bug](./08-degrades-after-boot-debug.md) | Low-level debugging · Android platform · daemon lifecycle | `Android internals` `SELinux` `zygote` `multi-agent RE` |
 | 09 | [Brick-safe firmware writes](./09-brick-safe-firmware.md) | Embedded safety · firmware lifecycle · open-source | `Python` `FastAPI` `React` `safe-by-construction` |
+| 10 | [Building a commercial real-time multiplayer game-server framework — and a verification ladder that caught what the mocks couldn't](./10-multiplayer-game-framework-verification.md) | Real-time multiplayer · server-authoritative · verification ladder | `Lua` `TypeScript` `React` `MariaDB` `Docker` |
 
 ---
 
