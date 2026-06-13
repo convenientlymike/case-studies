@@ -17,6 +17,7 @@ client-identifying details and proprietary specifics removed.
 | 05 | [Custom Android platform & instrumentation R&D](./05-systems-and-instrumentation.md) | Low-level systems · emulation · reverse engineering | `C` `Kotlin` `Frida` `Vulkan` `Metal` |
 | 06 | [Root-causing a GPU-driver crash (Metal↔Vulkan)](./06-gpu-driver-crash-re.md) | GPU driver RE · crash debugging · Apple Silicon | `C/C++` `Vulkan` `Metal` `Mesa` `gfxstream` |
 | 07 | [Making "done" machine-checkable](./07-forcing-function-completeness.md) | Engineering methodology · quality gates · large apps | `Python` `FastAPI` `TypeScript` `React` `lint gates` |
+| 08 | [Root-causing a "degrades-after-boot" reliability bug](./08-degrades-after-boot-debug.md) | Low-level debugging · Android platform · daemon lifecycle | `Android internals` `SELinux` `zygote` `multi-agent RE` |
 
 ---
 
