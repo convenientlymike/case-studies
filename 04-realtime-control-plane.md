@@ -42,4 +42,4 @@ backends behind one interface — without the UI choking on the data rate.
 - Sustained 30 Hz live telemetry with a clean operator experience.
 - A swappable HAL that made adding a new transport a small, contained change.
 
-*A sanitized, dummy-data public reference of this pattern is in progress.*
+*The write-safety layer of this control plane is now public as **[`bricksafe`](https://github.com/convenientlymike/bricksafe)** — see [case study #09](./09-brick-safe-firmware.md).*

@@ -18,6 +18,7 @@ client-identifying details and proprietary specifics removed.
 | 06 | [Root-causing a GPU-driver crash (Metal↔Vulkan)](./06-gpu-driver-crash-re.md) | GPU driver RE · crash debugging · Apple Silicon | `C/C++` `Vulkan` `Metal` `Mesa` `gfxstream` |
 | 07 | [Making "done" machine-checkable](./07-forcing-function-completeness.md) | Engineering methodology · quality gates · large apps | `Python` `FastAPI` `TypeScript` `React` `lint gates` |
 | 08 | [Root-causing a "degrades-after-boot" reliability bug](./08-degrades-after-boot-debug.md) | Low-level debugging · Android platform · daemon lifecycle | `Android internals` `SELinux` `zygote` `multi-agent RE` |
+| 09 | [Brick-safe firmware writes](./09-brick-safe-firmware.md) | Embedded safety · firmware lifecycle · open-source | `Python` `FastAPI` `React` `safe-by-construction` |
 
 ---
 
