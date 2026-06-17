@@ -20,6 +20,7 @@ client-identifying details and proprietary specifics removed.
 | 08 | [Root-causing a "degrades-after-boot" reliability bug](./08-degrades-after-boot-debug.md) | Low-level debugging · Android platform · daemon lifecycle | `Android internals` `SELinux` `zygote` `multi-agent RE` |
 | 09 | [Brick-safe firmware writes](./09-brick-safe-firmware.md) | Embedded safety · firmware lifecycle · open-source | `Python` `FastAPI` `React` `safe-by-construction` |
 | 10 | [Building a commercial real-time multiplayer game-server framework — and a verification ladder that caught what the mocks couldn't](./10-multiplayer-game-framework-verification.md) | Real-time multiplayer · server-authoritative · verification ladder | `Lua` `TypeScript` `React` `MariaDB` `Docker` |
+| 11 | [Capturing a game's runtime-resolved asset CDN (binary RE → passive memory pointer-chase)](./11-unity-asset-cdn-re.md) | Game asset RE · Unity/IL2CPP · first-party datamining | `Python` `IL2CPP` `Unity Addressables` `UnityPy` `ELF/ARM64` |
 
 ---
 
