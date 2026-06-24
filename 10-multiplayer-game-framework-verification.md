@@ -177,6 +177,61 @@ A gate that can't fail is theater. Every gate in the project ships with proof th
   drift). If the server and the UI ever compute a different answer for the same input, the
   parity gate goes red. Two implementations of one truth, structurally pinned together.
 
+## Building the layers out of order — the forward-compatible fold
+
+The framework ships in **verified-green increments**, but a layered architecture has a
+chicken-and-egg problem: a higher layer often needs a lower one that isn't designed yet. Both
+obvious answers are traps. Stub the lower layer's API and freeze it early, and you've committed
+to a contract before any real consumer has stress-tested its shape — a SemVer one-way door.
+Block the higher layer until the lower one exists, and the work stalls.
+
+The technique instead is a **forward-compatible fold**: when the lower mechanism doesn't exist
+yet, **fold it inside the consumer** — hand-rolled, private — *behind the public surface the
+consumer will keep*. The world/instancing subsystem needed a state-replication layer and an
+instance allocator that weren't built, so it hand-rolled an internal allocator and wrote global
+replicated state directly — **but only ever behind its own stable surface.** Nothing else in the
+codebase saw the hand-rolled internals; everything saw the surface that would survive.
+
+Later, when the real mechanisms were built as their own layer, the consumer's internals were
+**un-folded** onto them — swapped to delegate — one subsystem at a time, never big-bang: the
+world clock, then the instance allocator, then weather and the per-instance overrides. The part
+that makes it safe:
+
+**The proof that a swap is non-breaking is the regression suite staying byte-identically green
+across it.** If the public surface truly didn't change, every existing assertion still passes,
+unchanged — and *that is* the "surface unchanged" guarantee. No separate test is needed; the
+unchanged suite is the contract. Across the entire un-fold — every raw global-state write in the
+subsystem rerouted through the real replication layer — the world-simulation regression suite
+stayed green, assertion for assertion, while the assertion count only ever grew. A regression
+below that line fails the build.
+
+The subtle bit: when you swap an implementation behind a frozen interface, you need an observable
+that *distinguishes* the two, or your "it still works" test is testing nothing. Both the old raw
+write and the new layered write left the same replicated value, so reading the value back proved
+nothing. The distinguishing observable was the **coalesced-replication dirty-mark** the new path
+sets and the raw path doesn't — that single difference is what the swap-proof asserts, and the
+negative control reverts the swap and watches that assertion go red.
+
+### The sharpest version of "mock-green is necessary, never sufficient"
+
+The verification ladder above tells the eight-bugs-past-a-green-mock story. The fold work
+produced an even sharper one.
+
+One increment added a **server-authority guard** to the core state-write primitive — the gate
+that drops a client trying to write a server-owned value. The fast mock suite went **fully
+green.** But the guard's realm check compared a platform call against the literal boolean `true`,
+and the real runtime returns a *truthy non-boolean* there. So on the real server, the guard
+misread the server's **own** boot-time state write as a client spoof, refused it, and the
+framework **failed to boot** — every downstream check failing because nothing came up.
+
+The mock had stubbed that platform call to return a clean literal `true`, so the strictness bug
+was invisible: 100% of the fast suite passed against a server that couldn't start. The real-boot
+gate caught it; the fix was a one-line change to a truthy check — the idiom the rest of the
+codebase already used. The lesson became a *standing forcing function*: a later,
+security-critical guard now ships with a negative control whose entire job is to prove that an
+over-strict version of it would drop a legitimate caller — the same failure class, now caught by
+a test that bites.
+
 ## What generalizes
 
 A portable recipe for verifying any system where the cheap tests can lie:
@@ -195,6 +250,15 @@ A portable recipe for verifying any system where the cheap tests can lie:
    each check goes red on its bad fixture is how you keep a green suite from quietly going inert.
 6. **Pin cross-language duplicates to one shared golden vector** — including the rounding-edge
    rows — so two implementations of one rule cannot drift in silence.
+7. **Fold an unbuilt lower layer inside its consumer, behind the surface you'll keep — then
+   un-fold it non-breakingly.** Don't stub-and-freeze an API before a real tenant has shaped it;
+   defer the freeze to the highest-confidence moment, and let the unchanged regression suite be
+   the proof the swap changed nothing.
+8. **When you swap behind a frozen interface, find the observable that distinguishes the two
+   implementations** — or your "still works" test is green for the wrong reason.
+9. **A clean stub can hide a real-boot bug.** Verify any change to a shared, boot-time primitive
+   against the real runtime, and never compare a platform call against a literal `true`/`false` —
+   mock-green can mean "passes against a server that can't start."
 
 ## Outcome
 
@@ -213,6 +277,10 @@ A portable recipe for verifying any system where the cheap tests can lie:
 - A **premium, gamepad-first React 19 + Vite 6 + Tailwind** in-game UI with rebindable keybinds
   and a focus-tracking interaction model, browser-verified to the same evidence standard as the
   server.
+- A **forward-compatible fold** build discipline: lower layers folded inside their consumers
+  behind a stable surface, then un-folded onto the real mechanisms one subsystem at a time — each
+  swap proven non-breaking by a byte-identically-green regression suite, and one swap exposing a
+  mock-green-yet-won't-boot bug that hardened into a standing forcing function.
 - All of it anchored to a written **37-spec blueprint** and a **50-doctrine engineering
   constitution**, so the standard is enforceable rather than aspirational.
 
