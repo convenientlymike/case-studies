@@ -24,6 +24,7 @@ client-identifying details and proprietary specifics removed.
 | 12 | [A verified-reputation network for the skilled trades](./12-steeltoe-reputation-network.md) | Trades hiring · reputation graph · marketplace design · compliance-first | `Next.js` `TypeScript` `Prisma` `Postgres` |
 | 13 | [Operating a headless Android emulator from a phone — host-side WebRTC](./13-headless-emulator-webrtc-streaming.md) | Low-level systems · real-time media · WebRTC · remote access | `Python` `aiortc` `WebRTC` `gRPC` `Tailscale` |
 | 14 | [An AI trading control plane with a 17-rail safety engine](./14-ai-trading-control-plane.md) | AI agents · trading safety · human-in-the-loop control planes | `TypeScript` `React 19` `Fastify` `node:sqlite` `Discord` `MCP` |
+| 15 | [A read-only network assessment practice — and a recon tool that won't lie or run unauthorized](./15-network-security-assessment.md) | Network security · authorized assessment · read-only tooling | `Bash` `CLI` `read-only` `evidence-graded` |
 
 ---
 
